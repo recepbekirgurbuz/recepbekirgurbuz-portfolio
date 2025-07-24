@@ -1,0 +1,7 @@
+# Visual Studio klasörleri
+.vs/
+*.user
+*.suo
+*.vscode/
+bin/
+obj/
