@@ -75,4 +75,4 @@ docker-compose up --build
 MIT
 
 ## Goal
-This project is not just a simple code sample — it is real proof of my ability to build production-ready backend solutions for any corporate company.
+This project is a true testament to my ability to create production-ready backend solutions for enterprise companies.
