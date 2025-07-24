@@ -55,11 +55,11 @@ RecepBekirGurbuz.sln
 - CI/CD Pipeline with GitHub Actions
 - SEO Ready, Lighthouse 90+
 
-🖥️ Live Demo
+## 🖥️ Live Demo
 
-🌐 Coming Soon: https://recepbekirgurbuz.com.tr
+### 🌐 Coming Soon: https://recepbekirgurbuz.com.tr
 
-## 🚀 Getting Started
+### 🚀 Getting Started
 1. Clone Repository:
 git clone https://github.com/RecepBekirGurbuz/recepbekirgurbuz-portfolio.git
 
