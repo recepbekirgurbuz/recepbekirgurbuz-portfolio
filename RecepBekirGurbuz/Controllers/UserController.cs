@@ -24,7 +24,7 @@ namespace RecepBekirGurbuz.WebAPI.Controllers
             return Ok(users);
         }
 
-        // GET: api/user/5
+        // GET: api/user/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -35,17 +35,19 @@ namespace RecepBekirGurbuz.WebAPI.Controllers
 
         // POST: api/user
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] User user)
+        public async Task<IActionResult> Create(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
         }
 
-        // PUT: api/user/5
+        // PUT: api/user/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] User updatedUser)
+        public async Task<IActionResult> Update(int id, User updatedUser)
         {
+            if (id != updatedUser.Id) return BadRequest();
+
             var user = await _context.Users.FindAsync(id);
             if (user == null) return NotFound();
 
@@ -57,7 +59,7 @@ namespace RecepBekirGurbuz.WebAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/user/5
+        // DELETE: api/user/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
