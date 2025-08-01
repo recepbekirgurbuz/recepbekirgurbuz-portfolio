@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using RecepBekirGurbuz.Infrastructure.Data;
+using RecepBekirGurbuz.Infrastructure.Context;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
