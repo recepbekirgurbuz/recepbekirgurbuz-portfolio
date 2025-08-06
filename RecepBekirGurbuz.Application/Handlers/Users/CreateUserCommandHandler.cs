@@ -1,13 +1,12 @@
 ﻿using MediatR;
+using RecepBekirGurbuz.Application.Commands.Users;
+using RecepBekirGurbuz.Application.DTOs;
 using RecepBekirGurbuz.Core.Entities;
 using RecepBekirGurbuz.Infrastructure.Context;
-using RecepBekirGurbuz.Application.Commands.Users;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace RecepBekirGurbuz.Application.Handlers.Users
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDto>
     {
         private readonly AppDbContext _context;
 
@@ -16,19 +15,24 @@ namespace RecepBekirGurbuz.Application.Handlers.Users
             _context = context;
         }
 
-        public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var user = new User
             {
                 FullName = request.FullName,
                 Email = request.Email,
-                PasswordHash = request.PasswordHash
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
             };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return user.Id;
+            return new UserDto
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email
+            };
         }
     }
 }
